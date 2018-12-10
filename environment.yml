@@ -1,0 +1,27 @@
+name: Pychkari
+channels:
+  - defaults
+dependencies:
+  - ca-certificates=2018.03.07=0
+  - openssl=1.0.2p=h1de35cc_0
+  - pip=9.0.1=py34_1
+  - python=3.4.5=0
+  - readline=6.2=2
+  - setuptools=27.2.0=py34_0
+  - sqlite=3.13.0=0
+  - tk=8.5.18=0
+  - wheel=0.29.0=py34_0
+  - xz=5.2.4=h1de35cc_4
+  - zlib=1.2.11=h1de35cc_3
+  - pip:
+      - atomicwrites==1.2.1
+      - attrs==18.2.0
+      - more-itertools==4.3.0
+      - pathlib2==2.3.3
+      - pluggy==0.8.0
+      - py==1.7.0
+      - pytest==4.0.1
+      - scandir==1.9.0
+      - six==1.11.0
+prefix: /anaconda2/envs/Pychkari
+
