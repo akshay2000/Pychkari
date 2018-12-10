@@ -1,8 +1,8 @@
 import pytest
 
-import dependencymanager
-from dependencymanager import Node
-from errors import CyclicDependencyError
+from pychkari import dependencymanager
+from pychkari.dependencymanager import Node
+from pychkari.errors import CyclicDependencyError
 
 
 def test_tree():

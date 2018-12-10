@@ -1,4 +1,4 @@
-from errors import CyclicDependencyError
+from .errors import CyclicDependencyError, MissingDependencyError
 
 
 class Node:
@@ -27,11 +27,14 @@ def check_graph(all_nodes: dict, node: Node, current_chain: list = None):
     chain.append(node.name)
 
     for d in node.dependencies:
-        current_node = all_nodes[d]
+        current_node = all_nodes.get(d)
+        if not current_node:
+            raise MissingDependencyError("Dependency {0} is missing".format(d), d)
+
         is_okay = check_graph(all_nodes, current_node, chain)
         if not is_okay:
             dep_chain = chain + [d]
-            raise CyclicDependencyError(d, dep_chain)
+            raise CyclicDependencyError("Node {0} has a cyclic dependency".format(d), d, dep_chain)
         current_node.is_okay = is_okay
 
     chain.pop()

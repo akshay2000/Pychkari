@@ -3,6 +3,7 @@ from datetime import datetime
 import pytest
 
 from pychkari.container import Container
+from pychkari.errors import CyclicDependencyError
 
 
 class A:
@@ -26,6 +27,18 @@ class B:
     def __init__(self, a, dep_one):
         self.a = a
         self.dep1 = dep_one
+
+
+class CyclicDep:
+    def __init__(self, dep_one, dep_two, dep_three):
+        self.dep1 = dep_one
+        self.dep2 = dep_two
+        self.dep3 = dep_three
+
+
+class DepThree:
+    def __init__(self, cyclic_dep):
+        self.cyclic_dep = cyclic_dep
 
 
 def test_from_class():
@@ -83,6 +96,19 @@ def test_multi_level_injection():
     assert b.a == a
     assert b.dep1 == dep1
     assert a.dep1 == dep1
+
+
+def test_cyclic_dependency():
+    container = Container()
+    container.register("DepOne", DepOne)
+    container.register("DepTwo", DepTwo)
+    container.register("DepThree", DepThree)
+    container.register("CyclicDep", CyclicDep)
+
+    with pytest.raises(CyclicDependencyError) as exec_info:
+        container.get("CyclicDep")
+
+    assert exec_info.value.cycled_node_name == "CyclicDep"
 
 
 arg_names = [
