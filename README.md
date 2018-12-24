@@ -1,5 +1,7 @@
 # Pychkari
 
+[![Build Status](https://travis-ci.com/akshay2000/Pychkari.svg?branch=master)](https://travis-ci.com/akshay2000/Pychkari)
+
 A Very Simple Python Dependency Injector
 
 ## Installation
