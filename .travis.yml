@@ -1,7 +1,14 @@
 language: python
 python:
-  - "3.4"
-install:
-  python setup.py install
+  - '3.4'
+install: python setup.py install
 script:
   - pytest
+deploy:
+  provider: pypi
+  user: akshay2000
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+  password:
+    secure: BgLfSkYBjdGx1LGqd40Lo2U3fZqdVh7nXO0PmVddfIYMqD6gbKB0nn57KjY4bkFB4K3HcIjJ78Kc8tdw+JoL+FtN9uSjC4vCLwExrYOWTHwRYy2TnoP8POzxjlDykIJkm5SQfIHrsOlVA6pMQFw9yQxY09JkOKxQYXCCCh6J0Gl/Kt8c5jcKKw2G+rqk2pFpgcN7gK+Q1f1fSWe9X0h8DPyF+6VI8+I2JowChF+4JrzzEVJkIpnVY5PtqTMsTHyr2pb7OMiuz0T+DofMykE4fqLCak1bQNS9XMlPFHqtFuBVtJFKpZ7L/4y9DZ7TdglxnqZHQebsX3L8JH/48cQKcLOS9QPtAU545Iz0eUmIMkxFMFiaDVEGybx4oacewoNIVsRV/mDay7i7oTxtOfrxfwediT50jXuVOBLK0/ROkllvz8apT0ONNtsPkd8FFN+Xr24yqAA51R1gK/Y33zKUFKTXZ/Dgw69Vo/5TB/quQ7lBH3Pr+XuvFIaze1W6WPWwu1prbz9Ffh8iWxQTMTVdXBghajgypjba4HmVcfLcDX0ci36u/+uUuOmW5mnmkjj8Uv9BPsVWTmU3RCR0kVHzvnuar1XUXBYHt8HSR6vZgS/V1wGzwC/U2s/1sbJRiTNFDlVdNNt1Wal1YBEo7Zi3vUTtS/YTH3nkSwa3BoQafbA=

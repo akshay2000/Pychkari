@@ -13,12 +13,25 @@ class Container:
         self.__dependency_nodes = {}
 
     def register_class(self, clazz):
+        """
+        Registers a class with its own name as service name. This is shorthand for register("MyClass", MyClass).
+        :param clazz: Class to be registered
+        """
         if not inspect.isclass(clazz):
             raise RegistrationError("Only classes can be registered without explicit service name", clazz.__name__)
         class_name = clazz.__name__
         self.register(class_name, clazz)
 
     def register(self, service_name: str, thing):
+        """
+        Registers a service with the given name and factory.
+        :param service_name: Name of the service to be registered
+        :param thing: Thing can be either the class of the service to be returned or
+            a factory function that returns an instance.
+        Dependencies will be resolved within container. In case dependency is not registered, default value will be used
+        if provided. Otherwise, error will be raised.
+        :raises: RegistrationError if service_name is already registered.
+        """
         if service_name in self.__registry:
             raise RegistrationError("Service {0} is already registered".format(service_name), service_name)
         self.__registry[service_name] = thing
@@ -26,9 +39,19 @@ class Container:
         self.__dependency_nodes[service_name] = Node(service_name, dependencies)
 
     def is_registered(self, name: str) -> bool:
+        """
+        Checks if the service is registered with this container.
+        :param name: Name of the service to check.
+        :return: True if the service is registered in this container
+        """
         return name in self.__registry
 
     def get(self, service_name: str):
+        """
+        Returns an instance of the service. New instance is created if instance doesn't already exist.
+        :param service_name: Name of the service of which instance is to be retrieved.
+        :return: A singleton instance of the given service name.
+        """
         if not self.is_registered(service_name):
             raise MissingDependencyError("Service {0} is not registered".format(service_name), service_name)
         value = self.__get_value(service_name)
@@ -84,6 +107,16 @@ class Container:
 
     @staticmethod
     def arg_name_to_service_name(arg_name: str) -> str:
+        """
+        Converts a function argument name to service name. All the cases are eventually converted into Pascal case.
+        For example:
+            camelCase -> CamelCase
+            underscore_case -> UnderscoreCase
+            PascalCase -> PascalCase
+            Weird_mixed_Case -> WeirdMixedCase
+        :param arg_name: text to be converted to Pascal case
+        :return: Pascal cased text
+        """
         tokens = arg_name.split("_")
 
         def cap_first(word):
@@ -96,6 +129,10 @@ class Container:
 
     @staticmethod
     def instance():
+        """
+        Maintains singleton instance of the container
+        :return: Singleton instance of the container
+        """
         if Container.__instance is None:
             Container.__instance = Container()
         return Container.__instance
