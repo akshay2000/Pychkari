@@ -17,7 +17,7 @@ Pychkari (pronounced peach kaa ree) is a simple dependency injector for Python. 
 
 This example should get us started!
 
-    # Class definitions for referance
+    # Class definitions for reference
     
     class A:
         def __init__(self, 
