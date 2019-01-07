@@ -41,6 +41,12 @@ class DepThree:
         self.cyclic_dep = cyclic_dep
 
 
+class AnnotatedDependency:
+    def __init__(self, first_dep: DepOne, second_dep: "DepTwo"):
+        self.dep1 = first_dep
+        self.dep2 = second_dep
+
+
 def test_from_class():
     container = Container()
     container.register("DepOne", DepOne)
@@ -67,6 +73,18 @@ def test_from_factory():
 
     assert a_from_factory.const_d == const_dep
     assert a_without_factory != a_from_factory
+
+
+def test_default_value_override():
+    const = 42
+    container = Container()
+    container.register_class(A)
+    container.register_class(DepOne)
+    container.register_class(DepTwo)
+    container.register("ConstDep", lambda: const)
+
+    a = container.get("A")
+    assert a.const_d == const
 
 
 def test_injection():
@@ -109,6 +127,19 @@ def test_cyclic_dependency():
         container.get("CyclicDep")
 
     assert exec_info.value.cycled_node_name == "CyclicDep"
+
+
+def test_annotated_dependency():
+    container = Container()
+    container.register_class(DepOne)
+    container.register_class(DepTwo)
+    container.register_class(AnnotatedDependency)
+
+    annotated = container.get("AnnotatedDependency")
+    d1 = container.get("DepOne")
+    d2 = container.get("DepTwo")
+    assert annotated.dep1 == d1
+    assert annotated.dep2 == d2
 
 
 arg_names = [

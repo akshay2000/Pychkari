@@ -88,9 +88,12 @@ class Container:
         args = []
         for param_name, param in params.items():
             annotation = param.annotation
-            service_name = annotation
             if annotation == Parameter.empty:
                 service_name = Container.arg_name_to_service_name(param.name)
+            elif inspect.isclass(annotation):
+                service_name = annotation.__name__
+            else:
+                service_name = annotation
 
             if self.is_registered(service_name):
                 value = self.get(service_name)
@@ -144,9 +147,12 @@ class Container:
         dependencies = []
         for param_name, param in params.items():
             annotation = param.annotation
-            service_name = annotation
             if annotation == Parameter.empty:
                 service_name = Container.arg_name_to_service_name(param.name)
+            elif inspect.isclass(annotation):
+                service_name = annotation.__name__
+            else:
+                service_name = annotation
 
             if param.default == Parameter.empty:
                 dependencies.append(service_name)
