@@ -1,9 +1,9 @@
 language: python
 python:
-  - '3.4'
+- '3.4'
 install: python setup.py install
 script:
-  - pytest
+- pytest
 deploy:
   provider: pypi
   user: akshay2000
@@ -11,4 +11,4 @@ deploy:
   on:
     tags: true
   password:
-    secure: BgLfSkYBjdGx1LGqd40Lo2U3fZqdVh7nXO0PmVddfIYMqD6gbKB0nn57KjY4bkFB4K3HcIjJ78Kc8tdw+JoL+FtN9uSjC4vCLwExrYOWTHwRYy2TnoP8POzxjlDykIJkm5SQfIHrsOlVA6pMQFw9yQxY09JkOKxQYXCCCh6J0Gl/Kt8c5jcKKw2G+rqk2pFpgcN7gK+Q1f1fSWe9X0h8DPyF+6VI8+I2JowChF+4JrzzEVJkIpnVY5PtqTMsTHyr2pb7OMiuz0T+DofMykE4fqLCak1bQNS9XMlPFHqtFuBVtJFKpZ7L/4y9DZ7TdglxnqZHQebsX3L8JH/48cQKcLOS9QPtAU545Iz0eUmIMkxFMFiaDVEGybx4oacewoNIVsRV/mDay7i7oTxtOfrxfwediT50jXuVOBLK0/ROkllvz8apT0ONNtsPkd8FFN+Xr24yqAA51R1gK/Y33zKUFKTXZ/Dgw69Vo/5TB/quQ7lBH3Pr+XuvFIaze1W6WPWwu1prbz9Ffh8iWxQTMTVdXBghajgypjba4HmVcfLcDX0ci36u/+uUuOmW5mnmkjj8Uv9BPsVWTmU3RCR0kVHzvnuar1XUXBYHt8HSR6vZgS/V1wGzwC/U2s/1sbJRiTNFDlVdNNt1Wal1YBEo7Zi3vUTtS/YTH3nkSwa3BoQafbA=
+    secure: jlJWFqKEYNInrYnYyrcphKZfHfiDN2AAkG5C/573c/X5le0B3shZDpfxm7KYnLvQnIvODTm1iRsisbWpwdjT3rU9HKb0yEsS7LEeYnwHFvv81FxHWC0khYNfHwQDXMlN88pkO0dSHnczOfST3OVj2uFPUCOuEzhOhFHIKHujgkEHVta67ZVuYlmW8Xa/o/RcXGz6E6OkZ3LdcxSmXLI//nYBWzWEend0+dKI08xXZw6j8mQK5baZbrwRnXN8ctNFBNC7yN9uHbMO2fvYXq1CDiLmWSooYN6DSUA6UZTutah8Vh2rwFkuS3Nt7PBJ5a+xQlE3LmNwR1iRUGRNQsWmR9w0Hzdz+MQYSxh97hK0NpHcawKWkUUjqizkDrSQ5G17Vdlee1ZVojW0JI7PQb8obVR4zraV1tyJHDI8vc/rD4B5tfqI8p6XV8qu6Y/dbeVb2U277JwaREfd/wfWl5Y54AmvET6oMtJKDTaOyiwdO2MUvglVfqTMAizFb/E8dRF2kxf900dREBaoav7xUzsoFvPuXvFM67SQLqXZ8C2/1l7Z5rVYDkwf84Xyiy5I5xXGckdx/j/dg4zeh7JWGZoYJttVETM9+rtf5jWaGGjQ9BXJllUddlwAqAczu/GDFxNMXK+pHvSwno1KCEYSLZObG4CrrCInnnrMih+WhXKU2Rc=
