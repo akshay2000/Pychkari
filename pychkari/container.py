@@ -12,6 +12,9 @@ class Container:
         self.__values = {}
         self.__dependency_nodes = {}
 
+    def register_constant(self, service_name: str, value):
+        self.register(service_name, lambda: value)
+
     def register_class(self, clazz):
         """
         Registers a class with its own name as service name. This is shorthand for register("MyClass", MyClass).

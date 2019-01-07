@@ -142,6 +142,25 @@ def test_annotated_dependency():
     assert annotated.dep2 == d2
 
 
+def test_from_constant():
+    value1 = "Value1"
+    value2 = 42
+    value3 = DepTwo()
+
+    container = Container()
+    container.register_constant("V1", value1)
+    container.register_constant("V2", value2)
+    container.register_constant("V3", value3)
+
+    v1 = container.get("V1")
+    v2 = container.get("V2")
+    v3 = container.get("V3")
+
+    assert v1 == value1
+    assert v2 == value2
+    assert v3 == value3
+
+
 arg_names = [
     ("underscore_case", "UnderscoreCase"),
     ("long_underscore_case", "LongUnderscoreCase"),
